@@ -12,5 +12,5 @@ Este proyecto está diseñado para automatizar la extracción de datos. Incluye 
 
 - Asegúrate de tener configurado Outlook si necesitas enviar correos.
 - Los resultados se guardan en la carpeta `results` y se envían por correo a los destinatarios especificados en el archivo `parametros_destinatarios.xlsx`.
-- El proyecto se ejecuta correctamente para dispositivos de uso personal.
+- El proyecto se ejecuta unicamente para dispositivos de uso personal.
 
