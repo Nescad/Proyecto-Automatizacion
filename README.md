@@ -2,7 +2,7 @@
 
 Automatización para extracción de datos
 
-**Nota:** Este proyecto se encuentra actualmente en la rama `master`. Si necesitas trabajar con la rama principal del proyecto, asegúrate de cambiar a la rama `master` en tu repositorio local.
+**Nota:** Este proyecto se encuentra actualmente en la rama `master`.
 
 ## Descripción
 
