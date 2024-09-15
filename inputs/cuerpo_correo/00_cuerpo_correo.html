@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificación de Comisiones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #0275d8;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .table-container {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #0275d8;
+            color: #fff;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0275d8;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resumen de Comisiones</h1>
+        <p>Estimado usuario,</p>
+        
+        <p>A continuación, encontrarás el resumen de comisiones correspondiente al periodo actual vigente</p>
+
+        <p>Para más detalles, por favor revisa el archivo adjunto para los datos actuales o entra a la ruta para acceder a todos los archivos.</p>
+
+        <p>
+            <a href="file:///{{url}}">{{url}}</a>
+        </p>
+        
+        <div class="footer">
+            <p>&copy; {{year}} BATSEJ OPEN FINANCE S.A. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</body>
+</html>

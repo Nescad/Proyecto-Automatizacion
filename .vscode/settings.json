@@ -1,0 +1,12 @@
+{
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "conn",
+            "group": "conn",
+            "database": "${workspaceFolder:pryAutomatizacionEmpresas}/inputs/database/database.sqlite"
+        }
+    ]
+}
