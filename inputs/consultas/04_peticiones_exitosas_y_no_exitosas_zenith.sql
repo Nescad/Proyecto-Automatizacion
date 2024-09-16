@@ -10,6 +10,7 @@ WITH PeticionesExitosas AS (
     ON apicall.commerce_id = commerce.commerce_id
     WHERE apicall.ask_status = 'Successful'
     AND commerce.commerce_name = 'Zenith Corp.'
+    AND commerce.commerce_status = 'Active' -- Asegurando que solo se consideren empresas activas
     AND (apicall.date_api_call BETWEEN '2024-07-01' AND '2024-08-31')
     GROUP BY apicall.commerce_id, Fecha_Mes
 ),
@@ -25,6 +26,7 @@ PeticionesNoExitosas AS (
     ON apicall.commerce_id = commerce.commerce_id
     WHERE apicall.ask_status = 'Unsuccessful'
     AND commerce.commerce_name = 'Zenith Corp.'
+    AND commerce.commerce_status = 'Active' -- Asegurando que solo se consideren empresas activas
     AND (apicall.date_api_call BETWEEN '2024-07-01' AND '2024-08-31')
     GROUP BY apicall.commerce_id, Fecha_Mes
 ),
@@ -39,7 +41,7 @@ Comisiones AS (
         COALESCE(PeticionesNoExitosas.peticiones_no_exitosas, 0) AS peticiones_no_exitosas,
         CASE
             WHEN PeticionesExitosas.total_peticiones_exitosas <= 22000 THEN PeticionesExitosas.total_peticiones_exitosas * 250
-            ELSE PeticionesExitosas.total_peticiones_exitosas * 130
+            ELSE (22000 * 250) + ((PeticionesExitosas.total_peticiones_exitosas - 22000) * 130)
         END AS valor_comision
     FROM PeticionesExitosas
     INNER JOIN commerce
@@ -64,11 +66,13 @@ ComisionesConDescuento AS (
     FROM Comisiones
 )
 SELECT
-    ComisionesConDescuento.Fecha_Mes,
+    '2024-07-01' AS Fecha_Inicio, -- Fecha de inicio para el rango completo
+    '2024-08-31' AS Fecha_Fin,
     ComisionesConDescuento.commerce_name AS Nombre,
     ComisionesConDescuento.Nit,
-    ComisionesConDescuento.valor_comision_despues_descuento AS Valor_Comision,
-    (ComisionesConDescuento.valor_comision_despues_descuento * 0.19) AS Valor_Iva,
-    (ComisionesConDescuento.valor_comision_despues_descuento * 1.19) AS Valor_Total,
+    SUM(ComisionesConDescuento.valor_comision_despues_descuento) AS Valor_Comision,
+    (SUM(ComisionesConDescuento.valor_comision_despues_descuento) * 0.19) AS Valor_Iva,
+    (SUM(ComisionesConDescuento.valor_comision_despues_descuento) * 1.19) AS Valor_Total,
     ComisionesConDescuento.commerce_email AS Correo
-FROM ComisionesConDescuento;
+FROM ComisionesConDescuento
+GROUP BY ComisionesConDescuento.commerce_name, ComisionesConDescuento.Nit, ComisionesConDescuento.commerce_email
