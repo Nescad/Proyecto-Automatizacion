@@ -8,11 +8,13 @@ import os
 def procesar_datos():
     # Obtener datos de la base de datos y generar el archivo
     archivo_generado = obtener_datos()
+    print("Archivos procesados")
     return archivo_generado
 
 def detectar_parametros():
     # Extraer destinatarios
     destinatarios = detectar_destinatarios_notificacion()
+    print(f"Se detectaron los destinatarios:{destinatarios}")
     return destinatarios
 
 def enviar_notificacion(archivo_resultados, destinatarios):
@@ -33,7 +35,7 @@ def enviar_notificacion(archivo_resultados, destinatarios):
 
         # Contexto de variables
         context = {
-            'fecha_actual': datetime.now().strftime("%B %Y"),  # Por ejemplo, "Septiembre 2024"
+            'fecha_actual': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),  # Por ejemplo, "Septiembre 2024"
             'year': datetime.now().year,  # Año actual para el pie de página
             'url': ruta_absoluta
         }
@@ -45,6 +47,8 @@ def enviar_notificacion(archivo_resultados, destinatarios):
         enviar_correo(destinatarios, 'Formulario del Presente Mes', cuerpo, archivo_resultados)
     else:
         print("No se generó el archivo. El correo no se enviará.")
+    
+    print("Se envió la notificación adecuadamente")
 
 def main():
     # Procesar datos y obtener resultados
@@ -55,6 +59,8 @@ def main():
     
     # Enviar notificación
     enviar_notificacion(archivo_resultados, destinatarios)
+
+    print("El automatizador finalizó exitosamente")
 
 if __name__ == "__main__":
     main()

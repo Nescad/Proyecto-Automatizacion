@@ -1,6 +1,16 @@
 import pandas as pd
 
 def detectar_destinatarios_notificacion():
+    """
+    Lee un archivo Excel con una lista de correos electrónicos y retorna una cadena con los destinatarios,
+    separados por punto y coma, para su uso en Outlook.
+
+    Args:
+        None
+
+    Returns:
+        str: Cadena con los correos electrónicos separados por punto y coma.
+    """
     # Ruta del archivo Excel con los correos
     ruta_parametros = 'inputs/parametros/parametros_destinatarios.xlsx'
 

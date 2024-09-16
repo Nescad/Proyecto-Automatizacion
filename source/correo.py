@@ -2,6 +2,18 @@ import win32com.client as win32
 import os
 
 def enviar_correo(destinatario, asunto, cuerpo, archivo_adjunto):
+    """
+    Envía un correo electrónico a través de Outlook con un archivo adjunto.
+
+    Args:
+        destinatario (str): Dirección de correo del destinatario.
+        asunto (str): Asunto del correo.
+        cuerpo (str): Cuerpo del correo en formato HTML.
+        archivo_adjunto (str): Ruta del archivo a adjuntar.
+
+    Returns:
+        None
+    """
     # Crear instancia para Outlook
     outlook = win32.Dispatch('outlook.application')
     # Crear un nuevo correo

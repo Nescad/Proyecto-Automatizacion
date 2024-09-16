@@ -4,6 +4,17 @@ import glob
 import os
 
 def obtener_datos():
+    """
+    Conecta a una base de datos SQLite, ejecuta consultas SQL desde archivos en una carpeta, 
+    concatena los resultados en un DataFrame y guarda el resultado en un archivo Excel.
+
+    Args:
+    None
+
+    Returns:
+        str: Ruta del archivo Excel generado.
+        None: Si ocurre algún error.
+    """
     conn = None
     try:
         # Conexión a la base de datos
