@@ -1,4 +1,4 @@
-WITH Peticiones AS (
+WITH Peticiones AS ( 
     SELECT
         commerce.commerce_id,
         strftime('%m-%Y', apicall.date_api_call) AS Fecha_Mes,
@@ -12,9 +12,11 @@ WITH Peticiones AS (
     WHERE apicall.ask_status = 'Successful'
     AND commerce.commerce_name = 'NexaTech Industries'
     AND (apicall.date_api_call BETWEEN '2024-07-01' AND '2024-08-31')
+    AND commerce.commerce_status = 'Active'  -- Asegurando que solo se consideren empresas activas
 )
 SELECT
-    Peticiones.Fecha_Mes,
+    '2024-07-01' AS Fecha_Inicio,
+    '2024-08-31' AS Fecha_Fin,
     Peticiones.Nombre,
     Peticiones.Nit,
     CASE
@@ -33,6 +35,4 @@ SELECT
         ELSE (10000 * 250) + (10000 * 200) + ((total_peticiones - 20000) * 170)
     END * 1.19) AS Valor_Total,
     Peticiones.Correo
-FROM Peticiones
-INNER JOIN commerce
-ON Peticiones.commerce_id = commerce.commerce_id;
+FROM Peticiones;

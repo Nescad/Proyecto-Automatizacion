@@ -1,5 +1,6 @@
 SELECT 
-    strftime('%m-%Y', apicall.date_api_call) AS Fecha_Mes,
+    '2024-07-01' AS Fecha_Inicio,
+    '2024-08-31' AS Fecha_Fin,
     commerce.commerce_name AS Nombre,
     commerce.commerce_nit AS Nit,
     COUNT(*) * 300 AS Valor_Comision, -- Monto total de las comisiones sin IVA
